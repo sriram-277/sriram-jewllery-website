@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Sriram Jewllery</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <div class="sr-logo">SR</div>
+                <h1>Sriram Jewllery - Admin</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-store"></i> Back to Shop</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container admin-container">
+        <!-- Add New Item Form -->
+        <div class="admin-card">
+            <div class="section-header" style="margin-bottom: 30px; text-align: left;">
+                <h2 style="font-size: 1.8rem;">Add New Jewelry</h2>
+                <div class="line" style="margin: 0; width: 40px;"></div>
+            </div>
+            <form id="addItemForm">
+                <div class="form-group">
+                    <label for="itemTitle">Item Title</label>
+                    <input type="text" id="itemTitle" class="form-control" required placeholder="e.g., Diamond Studded Ring">
+                </div>
+                <div class="form-group">
+                    <label for="itemCategory">Category (Subpart)</label>
+                    <select id="itemCategory" class="form-control" required>
+                        <option value="Rings">Gold Rings</option>
+                        <option value="Silver Rings">Silver Rings</option>
+                        <option value="Maalai">Maalai</option>
+                        <option value="Necklaces">Necklaces</option>
+                        <option value="Earrings">Earrings</option>
+                        <option value="Bangles">Bangles</option>
+                        <option value="Bracelets">Gold Bracelets</option>
+                        <option value="Silver Bracelets">Silver Bracelets</option>
+                        <option value="Chain">Gold Chain</option>
+                        <option value="Silver Chain">Silver Chain</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="itemImage">Upload Image (Will be saved to Cloudinary)</label>
+                    <input type="file" id="itemImage" class="form-control" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Item</button>
+            </form>
+        </div>
+
+        <!-- Manage Items List -->
+        <div class="admin-card">
+            <div class="section-header" style="margin-bottom: 30px; text-align: left;">
+                <h2 style="font-size: 1.8rem;">Manage Inventory</h2>
+                <div class="line" style="margin: 0; width: 40px;"></div>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminProductsList">
+                        <!-- Items injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js?v=8"></script>
+</body>
+</html>
