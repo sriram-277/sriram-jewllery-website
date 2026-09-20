@@ -1034,6 +1034,78 @@ select.form-control option {
     letter-spacing: 0.5px;
 }
 
+/* AI Designer nav link */
+.nav-links .ai-designer-link {
+    position: relative;
+    color: var(--primary-color) !important;
+}
+
+.nav-links .ai-designer-link::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -8px;
+    width: 6px;
+    height: 6px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+}
+
+/* AI Designer CTA in Services */
+.ai-designer-cta {
+    text-align: center;
+    padding: 50px 30px;
+    background: linear-gradient(135deg, rgba(230, 198, 135, 0.06), rgba(230, 198, 135, 0.01));
+    border: 1px solid rgba(230, 198, 135, 0.15);
+    border-radius: 12px;
+    transition: var(--transition);
+    grid-column: 1 / -1;
+    margin-top: 10px;
+}
+
+.ai-designer-cta:hover {
+    border-color: rgba(230, 198, 135, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(230, 198, 135, 0.08);
+}
+
+.ai-designer-cta i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.ai-designer-cta h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+
+.ai-designer-cta p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ai-designer-cta .btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--bg-main);
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.ai-designer-cta .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(230, 198, 135, 0.3);
+}
+
 /* Responsiveness for rates */
 @media (max-width: 768px) {
     .live-rates {

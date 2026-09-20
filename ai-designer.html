@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Jewellery Designer | Sriram Jewellery</title>
+    <meta name="description" content="Design your dream jewellery with AI. Describe any jewellery design in your own words and see it come to life with Sriram Jewellery's AI Designer.">
+    <link rel="stylesheet" href="style.css?v=23">
+    <link rel="stylesheet" href="ai-designer.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="ai-designer-page">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <div class="sr-logo">SR</div>
+                <h1>Sriram Jewellery</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#collections">Collections</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="ai-designer.html" class="ai-designer-link active">AI Designer</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- AI Designer Workspace -->
+    <div class="ai-designer-workspace">
+        <!-- Left: Design Canvas -->
+        <div class="design-canvas">
+            <div class="canvas-header">
+                <div class="canvas-title">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                    <span>Design Studio</span>
+                </div>
+                <div class="canvas-actions">
+                    <button class="canvas-btn" id="btnUploadRef" title="Upload reference image">
+                        <i class="fas fa-image"></i> Reference
+                    </button>
+                    <button class="canvas-btn" id="btnRegenerate" title="Regenerate design">
+                        <i class="fas fa-rotate"></i> Regenerate
+                    </button>
+                    <button class="canvas-btn" id="btnDownload" title="Download design">
+                        <i class="fas fa-download"></i> Save
+                    </button>
+                    <button class="canvas-btn" id="btnFinalize" title="Finalize design">
+                        <i class="fas fa-check-circle"></i> Finalize
+                    </button>
+                </div>
+            </div>
+
+            <div class="design-preview" id="designPreview">
+                <div class="design-preview-empty">
+                    <div class="empty-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <h3>Your Design Will Appear Here</h3>
+                    <p>Describe your dream jewellery in the chat — the AI will generate a realistic concept image for you.</p>
+                </div>
+            </div>
+
+            <!-- Manufacturability Badge -->
+            <div class="mfg-badge" id="mfgBadge"></div>
+
+            <!-- Manufacturing Details Panel -->
+            <div class="mfg-details-panel" id="mfgDetailsPanel">
+                <div class="mfg-details-title">
+                    <span>Manufacturing Analysis</span>
+                    <button class="mfg-details-close" id="mfgDetailsClose">&times;</button>
+                </div>
+                <div id="mfgDetailsContent"></div>
+            </div>
+
+            <!-- Version Strip -->
+            <div class="version-strip" id="versionStrip">
+                <span class="version-label">Versions</span>
+                <div class="version-items" id="versionItems"></div>
+            </div>
+        </div>
+
+        <!-- Right: Chat Panel -->
+        <div class="chat-panel">
+            <div class="chat-header">
+                <div class="chat-header-top">
+                    <div class="chat-brand">
+                        <div class="chat-brand-icon"><i class="fas fa-gem"></i></div>
+                        <div class="chat-brand-text">
+                            <h3>AI Jewellery Designer</h3>
+                            <span>by Sriram Jewellery</span>
+                        </div>
+                    </div>
+                    <button class="chat-new-btn" id="chatNewBtn" title="New design"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="welcome-message">
+                    <div class="welcome-icon"><i class="fas fa-gem"></i></div>
+                    <h3>Welcome to AI Jewellery Designer</h3>
+                    <p>Describe any jewellery you imagine — I'll bring it to life with a realistic design concept and check if it can be manufactured.</p>
+                    <div class="suggestion-chips">
+                        <button class="suggestion-chip">Gold pendant with lotus shape and emerald</button>
+                        <button class="suggestion-chip">Diamond solitaire ring in platinum</button>
+                        <button class="suggestion-chip">Traditional temple necklace in gold</button>
+                        <button class="suggestion-chip">Modern rose gold earrings with rubies</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input-actions">
+                    <button class="input-action-btn" id="btnUploadRef2" title="Upload reference"><i class="fas fa-paperclip"></i> Reference Image</button>
+                    <button class="input-action-btn" onclick="document.getElementById('btnFinalize').click()" title="Finalize"><i class="fas fa-check"></i> Finalize</button>
+                </div>
+                <div class="chat-input-wrapper">
+                    <textarea class="chat-input" id="chatInput" placeholder="Describe your jewellery design..." rows="1"></textarea>
+                    <button class="chat-send-btn" id="chatSendBtn" title="Send"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <div class="chat-disclaimer">
+                <p>AI-generated designs are conceptual. Final dimensions, manufacturability, material selection, stone setting, structural integrity, weight and production method must be verified by a professional jewellery CAD designer or manufacturer before production.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reference Upload Overlay -->
+    <div class="reference-upload-overlay" id="referenceUploadOverlay">
+        <div class="reference-upload-box">
+            <button class="reference-upload-close" id="referenceUploadClose">&times;</button>
+            <h3>Upload Reference Image</h3>
+            <p>Upload a jewellery photo as inspiration. Describe what to keep and what to change.</p>
+            <div class="reference-drop-zone" id="referenceDropZone">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span class="drop-text">Drop reference image here or click to browse</span>
+                <span class="drop-subtext">JPG, PNG up to 10MB</span>
+            </div>
+            <img class="reference-preview-img" id="referencePreviewImg" alt="Reference preview">
+            <input type="file" id="referenceFileInput" accept="image/jpeg,image/png,image/webp" style="display:none">
+            <div class="reference-upload-actions">
+                <button class="btn btn-primary" id="referenceUseBtn">Use This Reference</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Finalize Design Overlay -->
+    <div class="finalize-overlay" id="finalizeOverlay">
+        <div class="finalize-container">
+            <div class="finalize-header">
+                <h2><i class="fas fa-gem" style="margin-right:10px;"></i> Final Design Summary</h2>
+                <button class="finalize-close" id="finalizeClose">&times;</button>
+            </div>
+            <div class="finalize-body">
+                <img class="finalize-image" id="finalizeImage" alt="Final design">
+
+                <div class="finalize-grid">
+                    <div class="finalize-field">
+                        <div class="finalize-field-label">Design Version</div>
+                        <div class="finalize-field-value" id="finalizeVersion">—</div>
+                    </div>
+                    <div class="finalize-field">
+                        <div class="finalize-field-label">Jewellery Type</div>
+                        <div class="finalize-field-value" id="finalizeType">—</div>
+                    </div>
+                    <div class="finalize-field">
+                        <div class="finalize-field-label">Material</div>
+                        <div class="finalize-field-value" id="finalizeMaterial">—</div>
+                    </div>
+                    <div class="finalize-field">
+                        <div class="finalize-field-label">Gemstones</div>
+                        <div class="finalize-field-value" id="finalizeGemstones">—</div>
+                    </div>
+                    <div class="finalize-field">
+                        <div class="finalize-field-label">Design Style</div>
+                        <div class="finalize-field-value" id="finalizeStyle">—</div>
+                    </div>
+                </div>
+
+                <div class="finalize-description">
+                    <div class="finalize-field-label">Design Description</div>
+                    <p id="finalizeDescription">—</p>
+                </div>
+
+                <div class="finalize-mfg-status" id="finalizeMfgStatus">—</div>
+
+                <div class="finalize-disclaimer">
+                    <p>⚠️ <strong>Important:</strong> This AI-generated design is a conceptual visualization only. Exact dimensions, structural integrity, metal weight, stone settings, and manufacturing feasibility must be verified by a professional jewellery CAD designer or manufacturer before production. Sriram Jewellery's expert team will validate all aspects during the professional consultation.</p>
+                </div>
+
+                <div class="finalize-actions">
+                    <button class="btn btn-primary" id="finalizeDownload"><i class="fas fa-download"></i> Download Design</button>
+                    <button class="btn btn-wa-green" id="finalizeWhatsApp"><i class="fab fa-whatsapp"></i> Request Quote</button>
+                    <button class="btn btn-outline" id="finalizeSendExpert"><i class="fas fa-paper-plane"></i> Send to Expert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expert Submission Form -->
+    <div class="expert-form-overlay" id="expertFormOverlay">
+        <div class="expert-form-box">
+            <button class="expert-form-close" id="expertFormClose">&times;</button>
+            <h3>Send to Jewellery Expert</h3>
+            <p>Submit your AI design concept for professional evaluation by Sriram Jewellery.</p>
+            <form id="expertForm">
+                <div class="form-group">
+                    <label for="expertName">Your Name *</label>
+                    <input type="text" id="expertName" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="expertPhone">Phone Number *</label>
+                    <input type="tel" id="expertPhone" required placeholder="Enter phone number">
+                </div>
+                <div class="form-group">
+                    <label for="expertEmail">Email (Optional)</label>
+                    <input type="email" id="expertEmail" placeholder="Enter email address">
+                </div>
+                <div class="form-group">
+                    <label for="expertNotes">Additional Notes</label>
+                    <textarea id="expertNotes" rows="3" placeholder="Any specific requirements or preferences..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-paper-plane"></i> Submit for Expert Review</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="ai-designer.js?v=1"></script>
+</body>
+</html>
